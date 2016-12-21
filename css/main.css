@@ -1,0 +1,91 @@
+ul {padding: 0; list-style: none;}
+.fullBox {height: 100%; width: 100%;}
+
+#global-container {
+    background: lightgray;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.bx-panel {
+	position: absolute;
+	border: 2px inset steelblue;
+}
+
+#midPanelContainer {
+	background: lightblue;
+}
+
+#bottomPanelContainer {
+	background: lightblue;
+	bottom: 0;
+	left: 0;
+}
+
+#codeEditor {
+    display: block;
+    background: #000;
+    color: #FFF;
+    height: 100%;
+    width: 100%;
+    padding: 3px 5px;
+    resize: none;
+    font-family: monospace;
+}
+
+#rightPanelContainer {
+	background: #d0c9c9;
+	height: 100%;
+	top: 0;
+	right: 0;
+}
+
+.side-sub-panel {
+    height: 50%;
+    overflow: auto;
+    background: #FFF;
+}
+
+.side-sub-panel .title {
+    display: block;
+    background: #5e5b8c;
+    color: #fff;
+    padding: 2px 7px;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.side-sub-panel li {
+    padding: 5px 10px;
+    border-bottom: 1px solid blue; 
+}
+
+#objectsPanel .fa {
+    position: absolute;
+    font-size: 20px;
+    right: 15px;
+    color: #d8bf00;
+}
+
+#propertiesTable {
+    width: 100%;
+}
+
+#propertiesTable tr td{
+    border: 1px solid blue;
+}
+
+#propertiesTable tr td:first-child {
+    padding: 0 5px;
+    
+}
+
+#propertiesTable tr td input {
+    width: 100%;
+    border: none;
+    padding: 0 5px;
+}

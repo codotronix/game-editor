@@ -1,0 +1,82 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>        
+        <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css"/>     
+        <link rel="stylesheet" href="css/main.css"/>
+        <script src="js/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <script src="js/jquery-1.11.2.min.js"></script>
+        <script src="js/angular.min.js"></script>
+    </head>
+    <body>
+        <div id="global-container" class="container-fluid">
+            
+            <!-- ************* Middle Panel ***************** -->
+            <div id="midPanelContainer" class="bx-panel">
+<!--                <div bx-include="partials/gameEditorPanel.html" class="fullBox"></div>-->
+               <div id="gameEditor" class="fullBox"></div>
+            </div>
+
+            <!-- ************* Bottom Panel ************* -->
+            <div id="bottomPanelContainer" class="bx-panel">
+<!--                <div bx-include="partials/codePanel.html" class="fullBox"></div>-->
+               <textarea id="codeEditor" placeholder="Write code here..."></textarea>
+            </div>
+
+            <!-- ************* Right Panel ************* -->
+            <div id="rightPanelContainer" class="bx-panel">
+<!--                <div bx-include="partials/objectsPanel.html" class="side-sub-panel"></div>-->
+<!--                <div bx-include="partials/propertiesPanel.html" class="side-sub-panel"></div>-->
+                <div class="side-sub-panel">
+                   <div id="objectsPanel">
+                       <span class="title">Objects</span>
+                        <ul id="objectList">
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="side-sub-panel">
+                   <span class="title">Properties</span>
+                    <table id="propertiesTable">
+                        <tr>
+                            <td>id</td>
+                            <td><input data-property="id" type="text" disabled="disabled"/></td>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td><input data-property="name" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <td>x</td>
+                            <td><input data-property="x" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <td>y</td>
+                            <td><input data-property="y" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <td>height</td>
+                            <td><input data-property="height" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <td>width</td>
+                            <td><input data-property="width" type="text"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        
+        <script src="js/script.js"></script>
+        <script src="js/initgameobjects.js"></script>
+        
+    </body>
+</html>
