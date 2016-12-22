@@ -28,6 +28,7 @@
             <div id="bottomPanelContainer" class="bx-panel">
 <!--                <div bx-include="partials/codePanel.html" class="fullBox"></div>-->
                <textarea id="codeEditor" placeholder="Write code here..."></textarea>
+               <i id="runcode" class="fa fa-play-circle" title="Run Code"></i>
             </div>
 
             <!-- ************* Right Panel ************* -->
@@ -45,38 +46,21 @@
                 <div class="side-sub-panel">
                    <span class="title">Properties</span>
                     <table id="propertiesTable">
-                        <tr>
-                            <td>id</td>
-                            <td><input data-property="id" type="text" disabled="disabled"/></td>
-                        </tr>
-                        <tr>
-                            <td>name</td>
-                            <td><input data-property="name" type="text"/></td>
-                        </tr>
-                        <tr>
-                            <td>x</td>
-                            <td><input data-property="x" type="text"/></td>
-                        </tr>
-                        <tr>
-                            <td>y</td>
-                            <td><input data-property="y" type="text"/></td>
-                        </tr>
-                        <tr>
-                            <td>height</td>
-                            <td><input data-property="height" type="text"/></td>
-                        </tr>
-                        <tr>
-                            <td>width</td>
-                            <td><input data-property="width" type="text"/></td>
-                        </tr>
                     </table>
                 </div>
             </div>
 
         </div>
         
-        <script src="js/script.js"></script>
-        <script src="js/initgameobjects.js"></script>
         
+        <script src="js/script.js"></script>
+        
+        <script src="js/src/gameObject.js"></script>
+        <script src="js/src/gameUtilities.js"></script>
+        <script src="js/src/objects.js"></script>
+        <script src="js/src/properties.js"></script>
+        <script src="js/src/codeEditor.js"></script>
+        <script src="js/src/init.js"></script>
+                
     </body>
 </html>
