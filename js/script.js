@@ -1,7 +1,7 @@
 $(function(){
 	
 	adjustFrameContainerSizes();
-	resolveBxIncludes(); 
+	//resolveBxIncludes(); 
 
 	$(window).resize(adjustFrameContainerSizes);
 
@@ -39,41 +39,52 @@ $(function(){
 	}
 
     //include the external files
-	function resolveBxIncludes () {
-		var bxIncludeDivs = $('[bx-include]');
-
-		//while (bxIncludeDivs.length > 0) {
-			bxIncludeDivs.each(function () {
-				var _this = this;
-				var url = $(_this).attr('bx-include');
-                
-				if(url.trim().length <= 0) {return;}
-                
-				$.ajax({
-					"url": url,
-					"success": function (data) { 
-                        $(_this).html(data); 
-                    },
-					"error": function (err) { 
-                        console.log(err);
-                    }
-				})
-			});
-            
-            //bxIncludeDivs.removeAttr('bx-include');
-		//}
-	}
+//	function resolveBxIncludes () {
+//		var bxIncludeDivs = $('[bx-include]');
+//
+//		//while (bxIncludeDivs.length > 0) {
+//			bxIncludeDivs.each(function () {
+//				var _this = this;
+//				var url = $(_this).attr('bx-include');
+//                
+//				if(url.trim().length <= 0) {return;}
+//                
+//				$.ajax({
+//					"url": url,
+//					"success": function (data) { 
+//                        $(_this).html(data); 
+//                    },
+//					"error": function (err) { 
+//                        console.log(err);
+//                    }
+//				})
+//			});
+//            
+//            //bxIncludeDivs.removeAttr('bx-include');
+//		//}
+//	}
     
     //When user selects an object from Objects
     $('body').on('click', '#objectList li', function(){
         $('#objectList li .fa-check-circle').removeClass('fa-check-circle').addClass('fa-circle');
         $(this).find('.fa').removeClass('fa-circle').addClass('fa-check-circle');
-        _9S.selectedObject = _9S.utilities.getObject($(this).attr('data-objectID'));
+        _9S.selectedObject = _9S.utilities.getObjectById($(this).attr('data-objectID'));
         _9S.functions.populateProperties();
     });
     
     //When user changes a property value
     $('body').on('blur', '#propertiesTable input[type="text"]', function(){
-        _9S.selectedObject[$(this).attr('data-property')] = $(this).val();
+        var propName = $(this).attr('data-property');
+        var newVal = $(this).val();
+        
+        if (propName === 'x') {
+            _9S.selectedObject.setX(newVal);
+        }
+        else if (propName === 'y') {
+            _9S.selectedObject.setY(newVal);
+        }
+        else {
+            _9S.selectedObject[propName] = newVal;
+        }
     });
 })
