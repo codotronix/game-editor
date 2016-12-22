@@ -1,4 +1,4 @@
-function GameObject (name, height, width, imgUrl, x, y) {
+function GameObject (name, height, width, imgUrl, x, y, speed) {
     var _this = this;
     
     init();
@@ -17,6 +17,8 @@ function GameObject (name, height, width, imgUrl, x, y) {
         _this.imgUrl = imgUrl;
         _this.x = x || 50;
         _this.y = y || 50;
+        _this.speed = speed || 0;
+        _this.addProperty = addProperty;
         
         _this.setX = setX;
         _this.setY = setY;
@@ -38,10 +40,19 @@ function GameObject (name, height, width, imgUrl, x, y) {
     function setX (newX) {
         _this.x = newX;
         $('#'+ _this.id).css('left', newX + 'px');
+        return _this;
     }
     
     function setY (newY) {
         _this.y = newY;
         $('#'+ _this.id).css('top', newY + 'px');
+        return _this;
+    }
+    
+    function addProperty (propName, propVal) {
+        _this[propName] = propVal;
+        //force refresh the properties panel
+        S9.functions.populateProperties();
+        return _this;
     }
 }

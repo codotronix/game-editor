@@ -1,15 +1,26 @@
-var _9S = _9S || {};
-_9S.utilities = _9S.utilities || {};
+var S9 = S9 || {};
+S9.utilities = S9.utilities || {};
+
+var go;
 
 (function(){
     
     //EXPORTS
-    _9S.utilities.getObjectById = getObjectById;    
+    S9.utilities.getObjectById = getObjectById;    
+    go = getObjectByName;
     
     function getObjectById (id) {
-        for(var i in _9S.objects) {
-            if(_9S.objects[i].id === id) {
-                return _9S.objects[i];
+        for(var i in S9.objects) {
+            if(S9.objects[i].id === id) {
+                return S9.objects[i];
+            }
+        }
+    }
+    
+    function getObjectByName (name) {
+        for(var i in S9.objects) {
+            if(S9.objects[i].name === name) {
+                return S9.objects[i];
             }
         }
     }

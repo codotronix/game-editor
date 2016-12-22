@@ -1,25 +1,25 @@
-var _9S = _9S || {};
-_9S.objects = _9S.objects || [];
-_9S.functions = _9S.functions || {};
+var S9 = S9 || {};
+S9.objects = S9.objects || [];
+S9.functions = S9.functions || {};
 
 (function(){
     
     //Export these functions
-    _9S.functions.populateObjectsList = populateObjectsList;
+    S9.functions.populateObjectsList = populateObjectsList;
     
     //This will populate the Objects List
     function populateObjectsList () {
-        _9S.selectedObject = _9S.selectedObject || _9S.objects[0];
+        S9.selectedObject = S9.selectedObject || S9.objects[0];
         var objectsListHTML = '';
         
-        //console.log(_9S.objects);
+        //console.log(S9.objects);
         
-        for(var i in _9S.objects) {
-            if(_9S.objects[i].id === _9S.selectedObject.id) {
-                objectsListHTML += '<li data-objectid="' +_9S.objects[i].id+ '">' + _9S.objects[i].name + '<i class="fa fa-check-circle"></i></li>';
+        for(var i in S9.objects) {
+            if(S9.objects[i].id === S9.selectedObject.id) {
+                objectsListHTML += '<li data-objectid="' +S9.objects[i].id+ '">' + S9.objects[i].name + '<i class="fa fa-check-circle"></i></li>';
             }
             else {
-                objectsListHTML += '<li data-objectid="' +_9S.objects[i].id+ '">' + _9S.objects[i].name + '<i class="fa fa-circle"></i></li>';
+                objectsListHTML += '<li data-objectid="' +S9.objects[i].id+ '">' + S9.objects[i].name + '<i class="fa fa-circle"></i></li>';
             }
         }
         //console.log(objectsListHTML);

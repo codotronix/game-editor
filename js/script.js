@@ -68,8 +68,8 @@ $(function(){
     $('body').on('click', '#objectList li', function(){
         $('#objectList li .fa-check-circle').removeClass('fa-check-circle').addClass('fa-circle');
         $(this).find('.fa').removeClass('fa-circle').addClass('fa-check-circle');
-        _9S.selectedObject = _9S.utilities.getObjectById($(this).attr('data-objectID'));
-        _9S.functions.populateProperties();
+        S9.selectedObject = S9.utilities.getObjectById($(this).attr('data-objectID'));
+        S9.functions.populateProperties();
     });
     
     //When user changes a property value
@@ -78,13 +78,13 @@ $(function(){
         var newVal = $(this).val();
         
         if (propName === 'x') {
-            _9S.selectedObject.setX(newVal);
+            S9.selectedObject.setX(newVal);
         }
         else if (propName === 'y') {
-            _9S.selectedObject.setY(newVal);
+            S9.selectedObject.setY(newVal);
         }
         else {
-            _9S.selectedObject[propName] = newVal;
+            S9.selectedObject[propName] = newVal;
         }
     });
 })

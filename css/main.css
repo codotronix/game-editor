@@ -26,6 +26,14 @@ ul {padding: 0; list-style: none;}
 	left: 0;
 }
 
+#runcode {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 25px;
+    color: red;
+}
+
 #codeEditor {
     display: block;
     background: #000;
