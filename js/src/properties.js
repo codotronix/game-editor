@@ -9,13 +9,17 @@ S9.functions = S9.functions || {};
     //This function will populate the properties of S9.selectedObject
     function populateProperties () {
         var tableHTML = '';
-        for (var key in S9.selectedObject) {
+        var selectedObj = S9.selectedObject;
+        //var selectedObj = S9.utilities.getObjectById(S9.selectedObjectID);
+        for (var key in selectedObj) {
             
-            if (typeof S9.selectedObject[key] === 'function') {continue;}
+            if (typeof selectedObj[key] !== 'string' &&
+               typeof selectedObj[key] !== 'number') 
+            {continue;}
             
             tableHTML += '<tr>'
                         +   '<td><b>' + key + '</b></td>'
-                        +   '<td><input data-property=' + key + ' type="text" value=' + S9.selectedObject[key] + '></td>'
+                        +   '<td><input data-property="' + key + '" type="text" value="' + selectedObj[key] + '"></td>'
                         +'</tr>';
         }
         
