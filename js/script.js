@@ -65,10 +65,14 @@ $(function(){
 //	}
     
     //When user selects an object from Objects
-    $('body').on('click', '#objectList li', function(){
+    $('body').on('click', '#objectList li .select-obj', function(){
+        if($(this).hasClass('fa-check-circle')) {return;}
         $('#objectList li .fa-check-circle').removeClass('fa-check-circle').addClass('fa-circle');
-        $(this).find('.fa').removeClass('fa-circle').addClass('fa-check-circle');
-        S9.selectedObject = S9.utilities.getObjectById($(this).attr('data-objectID'));
+        $(this).removeClass('fa-circle').addClass('fa-check-circle');
+        S9.selectedObject = S9.utilities.getObjectById($(this).closest('li').attr('data-objectID'));
+        
+        //S9.selectedObjectID = $(this).closest('li').attr('data-objectID');
+        
         S9.functions.populateProperties();
     });
     
@@ -77,14 +81,35 @@ $(function(){
         var propName = $(this).attr('data-property');
         var newVal = $(this).val();
         
-        if (propName === 'x') {
-            S9.selectedObject.setX(newVal);
+        S9.selectedObject.updateProperty(propName, newVal);
+        //var selectedObject = S9.utilities.getObjectById(S9.selectedObjectID);
+        //console.log('will change the property of ID='+S9.selectedObjectID);        
+        //selectedObject.updateProperty(propName, newVal);
+        //console.log(selectedObject);
+        
+        if(propName === 'name') {
+            S9.functions.populateObjectsList();
         }
-        else if (propName === 'y') {
-            S9.selectedObject.setY(newVal);
-        }
-        else {
-            S9.selectedObject[propName] = newVal;
-        }
+    });
+    
+    
+    //User clicks on create game object button
+    $('#createNewObject').on('click', function(){
+        var obj = new GameObject();
+        S9.functions.addNewObject(obj);
+    });
+    
+    
+    //User clicks on Clone Object Button
+    $('body').on('click', '#objectList li .clone-object', function(){
+        var objectID = $(this).closest('li').attr('data-objectid');
+        var targetObj = S9.utilities.getObjectById(objectID);
+        var newObj = $.extend(true, (new GameObject()), targetObj);
+        
+        newObj.id = S9.utilities.createNewID();
+        newObj.name = S9.utilities.createNewName();
+        newObj.elem = S9.utilities.createHTMlObject(newObj);
+        
+        S9.functions.addNewObject(newObj);
     });
 })

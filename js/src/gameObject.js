@@ -1,58 +1,110 @@
 function GameObject (name, height, width, imgUrl, x, y, speed) {
-    var _this = this;
+    //var this = this;
     
-    init();
+    this.id = S9.utilities.createNewID();        
+    this.name = name || S9.utilities.createNewName();
+    this.height = height || "";
+    this.width = width || "";
+    this.imgUrl = imgUrl || "";
+    this.x = x || 50;
+    this.y = y || 50;
+    this.speed = speed || 0;
+    this.hidden = false;
+    this.elem = S9.utilities.createHTMlObject(this);
     
-    function init () {
-        initVars ();
-        createHTMlObject();
-    }
+    GameObject.prototype.addProperty = addProperty;
+    GameObject.prototype.updateProperty = updateProperty;
+    GameObject.prototype.setX = setX;
+    GameObject.prototype.setY = setY;
+    GameObject.prototype.setHeight = setHeight;
+    GameObject.prototype.setWidth = setWidth;
+    GameObject.prototype.setImage = setImage;
     
-    function initVars () {
-        _this.id = 'goid' + (Math.random() * Math.random() / Math.random()).toString().replace('.','') + 'z';
-        
-        _this.name = name;
-        _this.height = height;
-        _this.width = width;
-        _this.imgUrl = imgUrl;
-        _this.x = x || 50;
-        _this.y = y || 50;
-        _this.speed = speed || 0;
-        _this.addProperty = addProperty;
-        
-        _this.setX = setX;
-        _this.setY = setY;
-    }
     
-    function createHTMlObject () {
-        var objEl = document.createElement('div');
-        objEl.id = _this.id;
-        objEl.style.height = _this.height + 'px';
-        objEl.style.width = _this.width + 'px';
-        objEl.style.position = 'absolute';
-        objEl.style.top = _this.y + 'px';
-        objEl.style.left = _this.x + 'px';
-        objEl.style.backgroundImage = "url(" + _this.imgUrl + ")";
-        
-        $('#gameEditor').append(objEl);
-    }
+    
+    
+    //init();
+    
+//    function init () {
+//        initVars ();
+//        this.elem = S9.utilities.createHTMlObject(this);
+//    }
+//    
+//    function initVars () {
+//        this.id = S9.utilities.createNewID();
+//        
+//        this.name = name || S9.utilities.createNewName();
+//        this.height = height || "";
+//        this.width = width || "";
+//        this.imgUrl = imgUrl || "";
+//        this.x = x || 50;
+//        this.y = y || 50;
+//        this.speed = speed || 0;
+//        this.hidden = false;
+//        
+//        GameObject.prototype.addProperty = addProperty;
+//        GameObject.prototype.updateProperty = updateProperty;
+//        GameObject.prototype.setX = setX;
+//        GameObject.prototype.setY = setY;
+//    }
     
     function setX (newX) {
-        _this.x = newX;
-        $('#'+ _this.id).css('left', newX + 'px');
-        return _this;
+        this.x = newX;
+        this.elem.style.left = newX + 'px';
+        return this;
     }
     
     function setY (newY) {
-        _this.y = newY;
-        $('#'+ _this.id).css('top', newY + 'px');
-        return _this;
+        this.y = newY;
+        this.elem.style.top = newY + 'px';
+        return this;
+    }
+    
+    function setHeight (newVal) {
+        this.height = newVal;
+        this.elem.style.height = newVal + 'px';
+        return this;
+    }
+    
+    function setWidth (newVal) {
+        this.width = newVal;
+        this.elem.style.width = newVal + 'px';
+        return this;
+    }
+    
+    function setImage (imgUrl) {
+        this.imgUrl = imgUrl;
+        this.elem.style.backgroundImage = "url(" + imgUrl + ")";
+        return this;
     }
     
     function addProperty (propName, propVal) {
-        _this[propName] = propVal;
+        this[propName] = propVal;
         //force refresh the properties panel
         S9.functions.populateProperties();
-        return _this;
+        return this;
+    }
+    
+    function updateProperty (propName, newVal) {
+        //console.log('this=');console.log(this);
+        if (propName === 'x') {
+            this.setX(newVal);
+        }
+        else if (propName === 'y') {
+            this.setY(newVal);
+        }
+        else if (propName === 'height') {
+            this.setHeight(newVal);
+        }
+        else if (propName === 'width') {
+            this.setWidth(newVal);
+        }
+        else if (propName === 'imgUrl') {
+            this.setImage(newVal);
+        }
+        else {
+            //console.log('this=');console.log(this);
+            this[propName] = newVal;
+        }
     }
 }
