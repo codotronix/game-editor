@@ -11,9 +11,12 @@ S9.functions = S9.functions || {};
     S9.functions.cloneObject = cloneObject;
     
     //Add new object by clicking add button
-    function addNewObject (obj) {
-        S9.objects.push(obj);
-        S9.selectedObject = obj;
+    function addNewObject (objArr) {
+        for (var i in objArr) {
+            S9.objects.push(objArr[i]);
+            S9.selectedObject = objArr[i];
+        }
+        
         //S9.selectedObjectID = obj.id;
     
         //Populate Objects List in Objects Panel
@@ -53,21 +56,27 @@ S9.functions = S9.functions || {};
     
     
     //This will clone a given a object
-    function cloneObject (targetObj) {
+    function cloneObject (targetObj, howManyClones) {
         //if obj name is passed get the object 1st
         if(typeof targetObj === 'string') {
             targetObj = S9.utilities.getObjectByName(targetObj);
         }
         
-        var newObj = $.extend(true, (new GameObject()), targetObj);
+        var cloneCount = howManyClones || 1;
         
-        newObj.id = S9.utilities.createNewID();
-        newObj.name = S9.utilities.createNewName();
-        newObj.elem = S9.utilities.createHTMlObject(newObj);
+        var objArr = [];
+        var newObj;
+        for (var i=0; i< cloneCount; i++) {
+            newObj = $.extend(true, (new GameObject()), targetObj);
+            newObj.id = S9.utilities.createNewID();
+            newObj.name = S9.utilities.createNewName();
+            newObj.elem = S9.utilities.createHTMlObject(newObj);
+            objArr.push(newObj);
+        }
         
-        S9.functions.addNewObject(newObj);
+        S9.functions.addNewObject(objArr);
         
-        return newObj;
+        return objArr;
     }
     
 })()
