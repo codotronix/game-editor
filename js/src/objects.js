@@ -7,7 +7,10 @@ S9.functions = S9.functions || {};
     //Export these functions
     S9.functions.populateObjectsList = populateObjectsList;
     S9.functions.addNewObject = addNewObject;
+    S9.functions.createNewObject = createNewObject;
+    S9.functions.cloneObject = cloneObject;
     
+    //Add new object by clicking add button
     function addNewObject (obj) {
         S9.objects.push(obj);
         S9.selectedObject = obj;
@@ -18,6 +21,13 @@ S9.functions = S9.functions || {};
 
         //Populate Properties Panel
         S9.functions.populateProperties();
+    }
+    
+    //Create a new object by Code
+    function createNewObject (name, height, width, imgUrl, x, y, speed) {
+        var obj = new GameObject(name, height, width, imgUrl, x, y, speed);
+        S9.functions.addNewObject(obj);
+        return(obj);
     }
     
     //This will populate the Objects List
@@ -39,6 +49,25 @@ S9.functions = S9.functions || {};
         //console.log(objectsListHTML);
         $('#objectList').html(objectsListHTML);       
          
+    }
+    
+    
+    //This will clone a given a object
+    function cloneObject (targetObj) {
+        //if obj name is passed get the object 1st
+        if(typeof targetObj === 'string') {
+            targetObj = S9.utilities.getObjectByName(targetObj);
+        }
+        
+        var newObj = $.extend(true, (new GameObject()), targetObj);
+        
+        newObj.id = S9.utilities.createNewID();
+        newObj.name = S9.utilities.createNewName();
+        newObj.elem = S9.utilities.createHTMlObject(newObj);
+        
+        S9.functions.addNewObject(newObj);
+        
+        return newObj;
     }
     
 })()

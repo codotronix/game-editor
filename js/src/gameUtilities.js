@@ -8,10 +8,11 @@ var go;
     //EXPORTS
     S9.utilities.createHTMlObject = createHTMlObject; 
     S9.utilities.getObjectById = getObjectById; 
+    S9.utilities.getObjectByName = getObjectByName; 
     S9.utilities.createNewID = createNewID; 
     S9.utilities.createNewName = createNewName; 
     
-    go = getObjectByName;    
+    //go = getObjectByName;    
     
     function createHTMlObject (obj) {
         var objEl = document.createElement('div');        
