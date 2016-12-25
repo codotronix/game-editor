@@ -64,4 +64,15 @@ b.speed = 3;
 g.tick(function(){ b.move(); });
 g.tick_start();
 
+
+
+http://127.0.0.1:49370/index.html#src=Zy5jbG9uZSgnQm94JywgMTApOwp2YXIgYm94TGlzdCA9IGcuZ2V0QWxsKCdCb3gnKTsKZy50aWNrKCBmdW5jdGlvbiAoKSB7IGcuY2FsbE9uQWxsKGJveExpc3QsICdtb3ZlJyk7Cn0pOwpnLnRpY2tfc3RhcnQoKTs=
+
+g.clone('Box', 10);
+var boxList = g.getAll('Box');
+g.tick( function () { 
+  g.callOnAll(boxList, 'move');
+});
+g.tick_start();
+
 */
