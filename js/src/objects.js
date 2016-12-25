@@ -10,6 +10,7 @@ S9.functions = S9.functions || {};
     S9.functions.createNewObject = createNewObject;
     S9.functions.cloneObject = cloneObject;
     S9.functions.deleteObject = deleteObject;
+    S9.functions.callOnAll = callOnAll;
     
     //Add new object by clicking add button
     function addNewObject (objArr) {
@@ -70,7 +71,7 @@ S9.functions = S9.functions || {};
         for (var i=0; i< cloneCount; i++) {
             newObj = $.extend(true, (new GameObject()), targetObj);
             newObj.id = S9.utilities.createNewID();
-            newObj.name = S9.utilities.createNewName();
+            newObj.name = S9.utilities.createNewName(targetObj.name);
             newObj.elem = S9.utilities.createHTMlObject(newObj);
             objArr.push(newObj);
         }
@@ -116,6 +117,12 @@ S9.functions = S9.functions || {};
             S9.functions.populateProperties();
         }
         
+    }
+    
+    function callOnAll(objArr, fnToCall) {
+        for(var i=0; i<objArr.length; i++) {
+            objArr[i][fnToCall]();
+        }
     }
     
 })()

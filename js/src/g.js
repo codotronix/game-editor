@@ -1,5 +1,7 @@
 var g = {
     get: S9.utilities.getObjectByName,
+    getAll: S9.utilities.getAllObjects,
+    callOnAll: S9.functions.callOnAll,
     create: S9.functions.createNewObject,
     clone: S9.functions.cloneObject,
     delete: S9.functions.deleteObject,

@@ -7,6 +7,7 @@ S9.utilities = S9.utilities || {};
     S9.utilities.createHTMlObject = createHTMlObject; 
     S9.utilities.getObjectById = getObjectById; 
     S9.utilities.getObjectByName = getObjectByName; 
+    S9.utilities.getAllObjects = getAllObjects; 
     S9.utilities.createNewID = createNewID; 
     S9.utilities.createNewName = createNewName; 
     S9.utilities.shareCodeInUrl = shareCodeInUrl; 
@@ -39,8 +40,9 @@ S9.utilities = S9.utilities || {};
         return ('goid' + (Math.random() * Math.random() / Math.random()).toString().replace('.','') + 'z');
     }
     
-    function createNewName () {
-        return ('N-' + Math.random().toString().replace('.',''));
+    function createNewName (namekey) {
+        var namekey = namekey || 'N';
+        return (namekey + '_' + Math.random().toString().replace('.',''));
     }
     
     function getObjectById (id) {
@@ -57,6 +59,17 @@ S9.utilities = S9.utilities || {};
                 return S9.objects[i];
             }
         }
+    }
+    
+    function getAllObjects (nameStartsWith) {
+        var nameSW = nameStartsWith.toLowerCase();
+        var objList = [];
+        for(var i in S9.objects) {
+            if(S9.objects[i].name.slice(0, nameSW.length).toLowerCase() === nameSW) {
+                objList.push(S9.objects[i]);
+            }
+        }
+        return objList;
     }
     
     function shareCodeInUrl () {
