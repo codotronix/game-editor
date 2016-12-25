@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/main.css"/>
         <script src="js/modernizr-2.8.3-respond-1.4.2.min.js"></script>
         <script src="js/jquery-1.11.2.min.js"></script>
-        <script src="js/angular.min.js"></script>
+<!--        <script src="js/angular.min.js"></script>-->
     </head>
     <body>
         <div id="global-container" class="container-fluid">
@@ -29,6 +29,7 @@
 <!--                <div bx-include="partials/codePanel.html" class="fullBox"></div>-->
                <textarea id="codeEditor" placeholder="Write code here..."></textarea>
                <i id="runcode" class="fa fa-play-circle" title="Run Code"></i>
+               <i id="shareCode" class="fa fa-share-square" title="Share Code via URL"></i>
             </div>
 
             <!-- ************* Right Panel ************* -->
@@ -36,8 +37,7 @@
 <!--                <div bx-include="partials/objectsPanel.html" class="side-sub-panel"></div>-->
 <!--                <div bx-include="partials/propertiesPanel.html" class="side-sub-panel"></div>-->
                 <div class="side-sub-panel">
-                   <div id="objectsPanel">
-                       
+                   <div id="objectsPanel">                       
                        <span class="title">Objects<i class="fa fa-plus" id="createNewObject"></i></span>
                         <ul id="objectList">
                         </ul>
@@ -45,22 +45,26 @@
                 </div>
                 
                 <div class="side-sub-panel">
-                   <span class="title">Properties</span>
-                    <table id="propertiesTable">
-                    </table>
+                   <div id="propertiesPanel">
+                       <span class="title">Properties<i class="fa fa-refresh" id="refreshPropertiesPanel"></i></span>
+                        <table id="propertiesTable">
+                        </table>
+                    </div>
                 </div>
             </div>
 
         </div>
         
         
-        <script src="js/script.js"></script>
+        <script src="js/bindings.js"></script>
         
+        <script src="js/src/world.js"></script>
         <script src="js/src/gameObject.js"></script>
         <script src="js/src/gameUtilities.js"></script>
         <script src="js/src/objects.js"></script>
         <script src="js/src/properties.js"></script>
         <script src="js/src/codeEditor.js"></script>
+        <script src="js/src/g.js"></script>
         <script src="js/src/init.js"></script>
                 
     </body>
