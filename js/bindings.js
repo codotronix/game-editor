@@ -95,8 +95,9 @@ $(function(){
     
     //User clicks on create game object button
     $('#createNewObject').on('click', function(){
-        var obj = new GameObject();
-        S9.functions.addNewObject(obj);
+        var objArr = [];
+        objArr.push(new GameObject());
+        S9.functions.addNewObject(objArr);
     });
     
     
@@ -105,5 +106,17 @@ $(function(){
         var objectID = $(this).closest('li').attr('data-objectid');
         var targetObj = S9.utilities.getObjectById(objectID);
         S9.functions.cloneObject(targetObj);
+    });
+    
+    //User clicks on Delete Object Button
+    $('body').on('click', '#objectList li .delete-obj', function(){
+        var objectID = $(this).closest('li').attr('data-objectid');
+        var targetObj = S9.utilities.getObjectById(objectID);
+        S9.functions.deleteObject(targetObj.name);
+    });
+    
+    //User clicks on Share Code in URL Button
+    $('#shareCode').on('click', function(){
+       S9.utilities.shareCodeInUrl(); 
     });
 })

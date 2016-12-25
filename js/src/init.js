@@ -9,4 +9,7 @@ $(function(){
     
     //Populate Properties Panel
     S9.functions.populateProperties();
+    
+    //Populate Code Editor from URL Code
+    S9.utilities.extractCodeFromUrl();
 })

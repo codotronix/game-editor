@@ -19,6 +19,8 @@ function GameObject (name, height, width, imgUrl, x, y, speed) {
     GameObject.prototype.setHeight = setHeight;
     GameObject.prototype.setWidth = setWidth;
     GameObject.prototype.setImage = setImage;
+    GameObject.prototype.show = showObject;
+    GameObject.prototype.hide = hideObject;
     
     
     
@@ -106,5 +108,23 @@ function GameObject (name, height, width, imgUrl, x, y, speed) {
             //console.log('this=');console.log(this);
             this[propName] = newVal;
         }
+    }
+    
+    function showObject (time) {
+        if(isNaN(time)) {
+            $('#'+ this.id).show();
+        } else {
+            $('#'+ this.id).show(time);
+        }
+        return this;
+    }
+    
+    function hideObject (time) {
+        if(isNaN(time)) {
+            $('#'+ this.id).hide();
+        } else {
+            $('#'+ this.id).hide(time);
+        }
+        return this;
     }
 }

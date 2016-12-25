@@ -9,6 +9,7 @@ S9.functions = S9.functions || {};
     S9.functions.addNewObject = addNewObject;
     S9.functions.createNewObject = createNewObject;
     S9.functions.cloneObject = cloneObject;
+    S9.functions.deleteObject = deleteObject;
     
     //Add new object by clicking add button
     function addNewObject (objArr) {
@@ -43,10 +44,10 @@ S9.functions = S9.functions || {};
         
         for(var i in S9.objects) {
             if(S9.objects[i].id === S9.selectedObject.id) {
-                objectsListHTML += '<li data-objectid="' +S9.objects[i].id+ '">' + S9.objects[i].name + '<i class="fa fa-clone clone-object" title="Clone this object"></i><i class="fa fa-check-circle select-obj"></i></li>';
+                objectsListHTML += '<li data-objectid="' +S9.objects[i].id+ '">' + S9.objects[i].name + '<i class="fa fa-clone clone-object" title="Clone this object"></i><i class="fa fa-check-circle select-obj"></i><i class="fa fa-times delete-obj"></i></li>';
             }
             else {
-                objectsListHTML += '<li data-objectid="' +S9.objects[i].id+ '">' + S9.objects[i].name + '<i class="fa fa-clone clone-object" title="Clone this object"></i><i class="fa fa-circle select-obj" title="Select this object"></i></li>';
+                objectsListHTML += '<li data-objectid="' +S9.objects[i].id+ '">' + S9.objects[i].name + '<i class="fa fa-clone clone-object" title="Clone this object"></i><i class="fa fa-circle select-obj" title="Select this object"></i><i class="fa fa-times delete-obj"></i></li>';
             }
         }
         //console.log(objectsListHTML);
@@ -76,7 +77,45 @@ S9.functions = S9.functions || {};
         
         S9.functions.addNewObject(objArr);
         
-        return objArr;
+        return ((cloneCount > 1) ? objArr : objArr[0]);
+    }
+    
+    
+    //Delete an Object
+    function deleteObject (objName) {
+        var objIndexToBeDeleted = -1;
+        var idToBeDeleted;
+        for (var i=0; i < S9.objects.length; i++) {
+            if(S9.objects[i].name === objName) {
+                objIndexToBeDeleted = i;
+                idToBeDeleted = S9.objects[i].id;                
+                break;
+            }
+        }
+        
+        //if object found, delete it
+        //make neccessary visual updates
+        if (objIndexToBeDeleted !== -1) {
+            //delete the object from objects array
+            S9.objects.splice(objIndexToBeDeleted, 1);
+            
+            //delete the html object
+            $('#'+idToBeDeleted).remove();
+            
+            //change seleted object if required
+            if(S9.selectedObject.id === idToBeDeleted) {
+                if(S9.objects.length > 0) {
+                    S9.selectedObject = S9.objects[0]
+                }
+                else {
+                    S9.selectedObject = null;
+                }
+            }
+            
+            S9.functions.populateObjectsList();
+            S9.functions.populateProperties();
+        }
+        
     }
     
 })()

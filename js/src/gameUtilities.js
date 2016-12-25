@@ -11,6 +11,8 @@ var go;
     S9.utilities.getObjectByName = getObjectByName; 
     S9.utilities.createNewID = createNewID; 
     S9.utilities.createNewName = createNewName; 
+    S9.utilities.shareCodeInUrl = shareCodeInUrl; 
+    S9.utilities.extractCodeFromUrl = extractCodeFromUrl; 
     
     //go = getObjectByName;    
     
@@ -52,4 +54,19 @@ var go;
             }
         }
     }
+    
+    function shareCodeInUrl () {
+        //var rawCode = encodeURIComponent($('#codeEditor').val().trim());
+        var rawCode = $('#codeEditor').val().replace(/\s\s+/g, ' ').trim();
+        var cryptedCode = btoa(rawCode);
+        
+        location.hash = "src="+cryptedCode;
+    }
+    
+    function extractCodeFromUrl () {
+        if(location.hash.length === 0) {return;}
+        var cryptedCode = location.hash.slice(5);
+        $('#codeEditor').val(atob(cryptedCode));
+    }
+        
 })()

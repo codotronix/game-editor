@@ -31,12 +31,20 @@ ul {padding: 0; list-style: none;}
 	left: 0;
 }
 
-#runcode {
+#bottomPanelContainer .fa {
     position: absolute;
-    top: 5px;
     right: 5px;
     font-size: 25px;
+}
+
+#runcode {    
+    top: 5px;    
     color: red;
+}
+
+#shareCode {
+    top: 32px;
+    color: #c49eff;
 }
 
 #codeEditor {
@@ -49,6 +57,7 @@ ul {padding: 0; list-style: none;}
     resize: none;
     font-family: monospace;
 }
+
 
 #rightPanelContainer {
 	background: #d0c9c9;
@@ -98,6 +107,10 @@ ul {padding: 0; list-style: none;}
 
 #objectsPanel .clone-object {
     right: 40px;
+}
+
+#objectsPanel .delete-obj {
+    right: 68px;
 }
 
 #propertiesTable {
