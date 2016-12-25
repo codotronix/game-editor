@@ -1,8 +1,8 @@
 $(function(){
     
     //create 2 predefined objects
-    S9.objects.push(new GameObject("Goltu", 83, 60, "img/goltu_run.png", 200, 50));
-    S9.objects.push(new GameObject("Box", 70, 70, "img/box.png", 300, 90));
+    //S9.objects.push(new GameObject("Goltu", 83, 60, "img/goltu_run.png", 200, 50, 10));
+    S9.objects.push(new GameObject("Box", 30, 30, "img/box.png", 300, 90, 3));
     
     //Populate Objects List in Objects Panel
     S9.functions.populateObjectsList();

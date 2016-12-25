@@ -1,8 +1,6 @@
 var S9 = S9 || {};
 S9.utilities = S9.utilities || {};
 
-var go;
-
 (function(){
     
     //EXPORTS

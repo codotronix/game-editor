@@ -14,7 +14,8 @@ S9.functions = S9.functions || {};
         for (var key in selectedObj) {
             
             if (typeof selectedObj[key] !== 'string' &&
-               typeof selectedObj[key] !== 'number') 
+               typeof selectedObj[key] !== 'number' &&
+               typeof selectedObj[key] !== 'boolean') 
             {continue;}
             
             tableHTML += '<tr>'
