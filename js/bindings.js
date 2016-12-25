@@ -101,6 +101,12 @@ $(function(){
     });
     
     
+    //User clicks on refreshPropertiesPanel
+    $('body').on('click', '#refreshPropertiesPanel', function(){
+        S9.functions.populateProperties();
+    });
+    
+    
     //User clicks on Clone Object Button
     $('body').on('click', '#objectList li .clone-object', function(){
         var objectID = $(this).closest('li').attr('data-objectid');

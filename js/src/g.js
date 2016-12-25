@@ -40,6 +40,13 @@ function moveRandom() {
 }
 
 
+//box will move randomly
+http://127.0.0.1:49484/index.html#src=dmFyIGIgPSBnLmdldCgnQm94Jyk7CmIuc3BlZWQgPSAzMDsKYm94TW92ZSgpOwpmdW5jdGlvbiBib3hNb3ZlICgpIHsgYi5tb3ZlKCdyYW5kb20nKTsgc2V0VGltZW91dChib3hNb3ZlLCA1MDApCn0=
 
+var b = g.get('Box');
+b.speed = 30;
+boxMove();
+function boxMove () { b.move('random'); setTimeout(boxMove, 500)
+}
 
 */

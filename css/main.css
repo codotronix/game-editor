@@ -72,11 +72,10 @@ ul {padding: 0; list-style: none;}
     background: #FFF;
 }
 
-#createNewObject {
-    color: #fff;
-    position: absolute;
+#createNewObject,
+#refreshPropertiesPanel {
     right: 10px;
-    top: 1px;
+    top: 2px;
 }
 
 .side-sub-panel .title {
@@ -95,7 +94,13 @@ ul {padding: 0; list-style: none;}
     border-bottom: 1px solid blue; 
 }
 
-#objectsPanel .fa {
+#objectsPanel,
+#propertiesPanel {
+    position: relative;
+}
+
+#objectsPanel .fa,
+#propertiesPanel .fa{
     position: absolute;
     font-size: 20px;    
     color: #c5c3b3;

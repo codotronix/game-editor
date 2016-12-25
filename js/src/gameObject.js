@@ -21,8 +21,11 @@ function GameObject (name, height, width, imgUrl, x, y, speed) {
     GameObject.prototype.setImage = setImage;
     GameObject.prototype.show = showObject;
     GameObject.prototype.hide = hideObject;
-    
-    
+    GameObject.prototype.move = move;
+    GameObject.prototype.moveLeft = moveLeft;
+    GameObject.prototype.moveRight = moveRight;
+    GameObject.prototype.moveUp = moveUp;
+    GameObject.prototype.moveDown = moveDown;
     
     
     //init();
@@ -78,6 +81,50 @@ function GameObject (name, height, width, imgUrl, x, y, speed) {
         this.imgUrl = imgUrl;
         this.elem.style.backgroundImage = "url(" + imgUrl + ")";
         return this;
+    }
+    
+    function moveLeft () {
+        this.setX(parseInt(this.x) - this.speed);
+    }
+    
+    function moveRight () {
+        this.setX(parseInt(this.x) + this.speed);
+    }
+    
+    function moveUp () {
+        this.setY(parseInt(this.y) - this.speed);
+    }
+    
+    function moveDown () {
+        this.setY(parseInt(this.y) + this.speed);
+    }
+    
+    function move (direction) {
+        if (direction === 'left') {
+            this.moveLeft();
+        }
+        else if (direction === 'right') {
+            this.moveRight();
+        }
+        else if (direction === 'up') {
+            this.moveUp();
+        }
+        else if (direction === 'down') {
+            this.moveDown();
+        }
+        else if (direction === 'random') {
+            var rand = Math.ceil(Math.random() * 3);
+            
+            //1=left, 2=right, 3=none
+            if (rand === 1) { this.moveLeft(); }
+            else if (rand === 2) { this.moveRight(); }
+            
+            rand = Math.ceil(Math.random() * 3);
+            
+            //1=up, 2=down, 3=none
+            if (rand === 1) { this.moveUp(); }
+            else if (rand === 2) { this.moveDown(); }
+        }
     }
     
     function addProperty (propName, propVal) {
