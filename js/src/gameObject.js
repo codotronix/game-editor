@@ -112,7 +112,7 @@ function GameObject (name, height, width, imgUrl, x, y, speed) {
         else if (direction === 'down') {
             this.moveDown();
         }
-        else if (direction === 'random') {
+        else if (direction === 'random' || direction === undefined) {
             var rand = Math.ceil(Math.random() * 3);
             
             //1=left, 2=right, 3=none

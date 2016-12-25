@@ -13,6 +13,12 @@ var go;
     S9.utilities.createNewName = createNewName; 
     S9.utilities.shareCodeInUrl = shareCodeInUrl; 
     S9.utilities.extractCodeFromUrl = extractCodeFromUrl; 
+    S9.utilities.addCallbackFunctionToTick = addCallbackFunctionToTick; 
+    S9.utilities.tick_start = tick_start; 
+    S9.utilities.tick_stop = tick_stop; 
+    
+    S9.tickCallbacks = [];
+    S9.tickRunning = false;
     
     //go = getObjectByName;    
     
@@ -67,6 +73,18 @@ var go;
         if(location.hash.length === 0) {return;}
         var cryptedCode = location.hash.slice(5);
         $('#codeEditor').val(atob(cryptedCode));
+    }
+    
+    function addCallbackFunctionToTick (fn) {
+        S9.tickCallbacks.push(fn);
+    }
+    
+    function tick_start () {        
+        S9.tickRunning = true;        
+    }
+    
+    function tick_stop () {        
+        S9.tickRunning = false;        
     }
         
 })()

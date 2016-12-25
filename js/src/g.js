@@ -2,7 +2,10 @@ var g = {
     get: S9.utilities.getObjectByName,
     create: S9.functions.createNewObject,
     clone: S9.functions.cloneObject,
-    delete: S9.functions.deleteObject
+    delete: S9.functions.deleteObject,
+    tick: S9.utilities.addCallbackFunctionToTick,
+    tick_start: S9.utilities.tick_start,
+    tick_stop: S9.utilities.tick_stop
 }
 
 
@@ -48,5 +51,15 @@ b.speed = 30;
 boxMove();
 function boxMove () { b.move('random'); setTimeout(boxMove, 500)
 }
+
+
+
+
+http://127.0.0.1:51344/index.html#src=dmFyIGIgPSBnLmdldCgnQm94Jyk7CmIuc3BlZWQgPSAzOwpnLnRpY2soZnVuY3Rpb24oKXsgYi5tb3ZlKCk7IH0pOwpnLnRpY2tfc3RhcnQoKTs=
+
+var b = g.get('Box');
+b.speed = 3;
+g.tick(function(){ b.move(); });
+g.tick_start();
 
 */

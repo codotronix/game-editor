@@ -12,4 +12,15 @@ $(function(){
     
     //Populate Code Editor from URL Code
     S9.utilities.extractCodeFromUrl();
+    
+    gameLoop();
+    
+    function gameLoop () {
+        if (S9.tickRunning) {
+           for (var i=0; i < S9.tickCallbacks.length; i++) {
+               S9.tickCallbacks[i]();
+           } 
+        }
+        setTimeout(gameLoop, 1000/30);
+    }
 })
