@@ -3,13 +3,17 @@ namespace S9 {
     export interface EnvironmentParams {
         name: string;
         imgUrl: string;
-        isSprite ?: boolean;  //default false
+        imgX?: string;                   //image x position in spritesheet - default "0px"
+        imgY?: string;                   //image y position in spritesheet - default "0px"
+        isSprite ?: boolean;            //default false
         height: number;
         width: number;
         x: number;
         y: number;
         autoMove: EnvironmentAutoMove;
-        //interactable ?: boolean;    //default false, means animation will be done is css3, if true then jqeury/js
+        animationDuration: string;
+        animationDelay?: string;         //Default delay is 0s
+        //interactable ?: boolean;      //default false, means animation will be done is css3, if true then jqeury/js
         htmlContainerID: string
     }
 

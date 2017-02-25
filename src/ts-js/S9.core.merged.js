@@ -1,5 +1,68 @@
-/// <reference path="EnvironmentParams.ts" />
+var $ = $;
 var S9;
+/************************************************************************
+ *  GameWorld.js 
+ * **********************************************************************/
+(function (S9) {
+    var GameWorld = (function () {
+        function GameWorld(htmlGameWordID) {
+        }
+        GameWorld.init = function (htmlGameWordID) {
+            GameWorld.gameWorldID = htmlGameWordID;
+            GameWorld.calculateWorldDimensions();
+            GameWorld.addWorldResizeListener(GameWorld.calculateWorldDimensions);
+            GameWorld.startWorldResizeListener();
+        };
+        GameWorld.calculateWorldDimensions = function () {
+            GameWorld.width = $('#' + GameWorld.gameWorldID).width();
+            GameWorld.height = $('#' + GameWorld.gameWorldID).height();
+            console.log("height = " + S9.GameWorld.height);
+            console.log("width = " + S9.GameWorld.width);
+        };
+        GameWorld.addWorldResizeListener = function (fn) {
+            GameWorld.worldResizeListeners.push(fn);
+        };
+        GameWorld.startWorldResizeListener = function () {
+            $(window).on('resize', function () {
+                for (var i in GameWorld.worldResizeListeners) {
+                    GameWorld.worldResizeListeners[i]();
+                }
+            });
+        };
+        return GameWorld;
+    }());
+    GameWorld.worldResizeListeners = [];
+    S9.GameWorld = GameWorld;
+})(S9 || (S9 = {}));
+
+//////////////////////////////////////////////////////////////////////////
+
+
+
+/************************************************************************
+ *  EnvironmentParams.js
+ * **********************************************************************/
+(function (S9) {
+    /*
+    * The direction in which game environment objects like, road, clouds etc should move towards automatically
+    */
+    var EnvironmentAutoMove;
+    (function (EnvironmentAutoMove) {
+        EnvironmentAutoMove[EnvironmentAutoMove["None"] = 0] = "None";
+        EnvironmentAutoMove[EnvironmentAutoMove["Left"] = 1] = "Left";
+        EnvironmentAutoMove[EnvironmentAutoMove["Right"] = 2] = "Right";
+        EnvironmentAutoMove[EnvironmentAutoMove["Up"] = 3] = "Up";
+        EnvironmentAutoMove[EnvironmentAutoMove["Down"] = 4] = "Down";
+        EnvironmentAutoMove[EnvironmentAutoMove["Random"] = 5] = "Random";
+    })(EnvironmentAutoMove = S9.EnvironmentAutoMove || (S9.EnvironmentAutoMove = {}));
+})(S9 || (S9 = {}));
+//////////////////////////////////////////////////////////////////////////
+
+
+
+/************************************************************************
+ *  GameEnvironment.js
+ * **********************************************************************/
 (function (S9) {
     var GameEnvironment = (function () {
         function GameEnvironment(env_params) {
@@ -57,4 +120,4 @@ var S9;
     }());
     S9.GameEnvironment = GameEnvironment;
 })(S9 || (S9 = {}));
-//# sourceMappingURL=GameEnvironment.js.map
+//////////////////////////////////////////////////////////////////////////
