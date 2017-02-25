@@ -15,6 +15,7 @@ S9.utilities = S9.utilities || {};
     S9.utilities.addCallbackFunctionToTick = addCallbackFunctionToTick; 
     S9.utilities.tick_start = tick_start; 
     S9.utilities.tick_stop = tick_stop; 
+    S9.utilities.isColliding = isColliding;    
     
     S9.tickCallbacks = [];
     S9.tickRunning = false;
@@ -96,6 +97,23 @@ S9.utilities = S9.utilities || {};
     
     function tick_stop () {        
         S9.tickRunning = false;        
+    }
+    
+    
+    
+    function isColliding (objA, objB) {
+        if ((objA.x + objA.width) < objB.x
+            || objA.x > (objB.x + objB.width)
+            || (objA.y + objA.height) < objB.y
+            || objA.y > (objB.y + objB.height)
+            ) 
+        {
+            //no collision
+            return false;
+        }
+        else {
+            return true;
+        }
     }
         
 })()
