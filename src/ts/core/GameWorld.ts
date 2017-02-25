@@ -1,7 +1,7 @@
 var $: any = $;
 namespace S9 {
     export class GameWorld  {
-        static gameWorldID: string;
+        static id: string;
         static worldResizeListeners: Array<Function> = [];
         public static width: number;
         public static height: number;
@@ -9,7 +9,7 @@ namespace S9 {
         private constructor (htmlGameWordID: string) {}
 
         public static init (htmlGameWordID: string) {
-            GameWorld.gameWorldID = htmlGameWordID;
+            GameWorld.id = htmlGameWordID;
             GameWorld.calculateWorldDimensions();
             GameWorld.addWorldResizeListener(GameWorld.calculateWorldDimensions);
 
@@ -17,8 +17,8 @@ namespace S9 {
         }
 
         static calculateWorldDimensions () {
-            GameWorld.width = $('#' + GameWorld.gameWorldID).width();
-            GameWorld.height = $('#' + GameWorld.gameWorldID).height();
+            GameWorld.width = $('#' + GameWorld.id).width();
+            GameWorld.height = $('#' + GameWorld.id).height();
             console.log("height = " + S9.GameWorld.height);
             console.log("width = " + S9.GameWorld.width);
         }
