@@ -12,7 +12,7 @@ var S9;
             this.width = env_params.width;
             this.x = env_params.x;
             this.y = env_params.y;
-            this.autoMove = env_params.autoMove;
+            this.autoMove = env_params.autoMove || S9.EnvironmentAutoMove.None;
             this.animationDuration = env_params.animationDuration;
             this.animationDelay = env_params.animationDelay || "0s";
             this.htmlContainerID = env_params.htmlContainerID;
@@ -26,7 +26,11 @@ var S9;
             var anim_y_displacement;
             var height;
             var width;
-            if (this.autoMove === S9.EnvironmentAutoMove.Left) {
+            if (this.autoMove === S9.EnvironmentAutoMove.None) {
+                width = this.width + "px";
+                height = this.height + "px";
+            }
+            else if (this.autoMove === S9.EnvironmentAutoMove.Left) {
                 anim_x_displacement = this.width + "px";
                 anim_y_displacement = "0px";
                 width = "100%";
@@ -50,7 +54,14 @@ var S9;
                 width = this.width + "px";
                 height = "100%";
             }
-            var htmlObj = "\n                <div id=" + this.id + " class=\"S9-Game-Object\"></div>\n                \n                <style>\n                    #" + this.id + " {\n                        height: " + height + ";\n                        width: " + width + ";\n                        top: " + this.y + "px;\n                        left: " + this.x + "px;\n                        background: url(\"" + this.imgUrl + "\") 0px 0px repeat;\n                        -webkit-animation: " + animationName + " " + this.animationDuration + " linear " + this.animationDelay + " infinite normal;\n                        animation: " + animationName + " " + this.animationDuration + " linear " + this.animationDelay + " infinite normal;\n                    }\n\n                    @keyframes " + animationName + " {\n                        from { background-position: 0px 0px; }\n                        to { background-position: " + anim_x_displacement + " " + anim_y_displacement + "; }\n                    }\n                </style>\n            ";
+            var animationHtml = "";
+            if (this.autoMove !== S9.EnvironmentAutoMove.None) {
+                animationHtml = "\n                        -webkit-animation: " + animationName + " " + this.animationDuration + " linear " + this.animationDelay + " infinite normal;\n                        animation: " + animationName + " " + this.animationDuration + " linear " + this.animationDelay + " infinite normal;\n                    }\n\n                    @keyframes " + animationName + " {\n                        from { background-position: 0px 0px; }\n                        to { background-position: " + anim_x_displacement + " " + anim_y_displacement + "; }\n                    }\n                ";
+            }
+            else {
+                animationHtml = "}";
+            }
+            var htmlObj = "\n                <div id=" + this.id + " class=\"S9-Game-Object\"></div>\n                \n                <style>\n                    #" + this.id + " {\n                        height: " + height + ";\n                        width: " + width + ";\n                        top: " + this.y + "px;\n                        left: " + this.x + "px;\n                        background: url(\"" + this.imgUrl + "\") 0px 0px repeat;\n                        " + animationHtml + "\n                </style>\n            ";
             $('#' + this.htmlContainerID).append(htmlObj);
         };
         return GameEnvironment;

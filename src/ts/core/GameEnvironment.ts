@@ -27,7 +27,7 @@ namespace S9 {
             this.width = env_params.width;
             this.x = env_params.x;
             this.y = env_params.y;
-            this.autoMove = env_params.autoMove;
+            this.autoMove = env_params.autoMove || EnvironmentAutoMove.None;
             this.animationDuration = env_params.animationDuration;
             this.animationDelay = env_params.animationDelay || "0s";
             this.htmlContainerID = env_params.htmlContainerID;
@@ -46,7 +46,11 @@ namespace S9 {
             let height: string;
             let width: string;
 
-            if (this.autoMove === EnvironmentAutoMove.Left) {
+            if (this.autoMove === EnvironmentAutoMove.None) {
+                width = this.width + "px";
+                height = this.height + "px";
+            }
+            else if (this.autoMove === EnvironmentAutoMove.Left) {
                 anim_x_displacement = this.width + "px";
                 anim_y_displacement = "0px";
                 width = "100%";
@@ -71,6 +75,26 @@ namespace S9 {
                 height = "100%";
             }
 
+            let animationHtml: string = "";
+
+            if (this.autoMove !== EnvironmentAutoMove.None) {
+                animationHtml = `
+                        -webkit-animation: ${animationName} ${this.animationDuration} linear ${this.animationDelay} infinite normal;
+                        animation: ${animationName} ${this.animationDuration} linear ${this.animationDelay} infinite normal;
+                    }
+
+                    @keyframes ${animationName} {
+                        from { background-position: 0px 0px; }
+                        to { background-position: ${anim_x_displacement} ${anim_y_displacement}; }
+                    }
+                `;
+            }
+            else {
+                animationHtml = "}";
+            }
+            
+
+
             let htmlObj = `
                 <div id=${this.id} class="S9-Game-Object"></div>
                 
@@ -81,14 +105,7 @@ namespace S9 {
                         top: ${this.y}px;
                         left: ${this.x}px;
                         background: url("${this.imgUrl}") 0px 0px repeat;
-                        -webkit-animation: ${animationName} ${this.animationDuration} linear ${this.animationDelay} infinite normal;
-                        animation: ${animationName} ${this.animationDuration} linear ${this.animationDelay} infinite normal;
-                    }
-
-                    @keyframes ${animationName} {
-                        from { background-position: 0px 0px; }
-                        to { background-position: ${anim_x_displacement} ${anim_y_displacement}; }
-                    }
+                        ${animationHtml}
                 </style>
             `;
 
