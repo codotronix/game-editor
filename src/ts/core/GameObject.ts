@@ -1,7 +1,5 @@
-/// <reference path="EnvironmentParams.ts" />
-
 namespace S9 {
-    export class GameEnvironment implements EnvironmentParams {
+    export class GameObject implements I_EnvironmentParams {
         id: string;
         name: string;
         imgUrl: string;
@@ -12,12 +10,15 @@ namespace S9 {
         width: number;
         x: number;
         y: number;
-        autoMove: EnvironmentAutoMove;
+        autoMove: E_EnvironmentAutoMove;
+        speed ?: number;
+        jumpUpSpeed ?: number;
+        gravityPull ?: number;
         animationDuration: string;
         animationDelay: string;
         htmlContainerID: string;
 
-        constructor (env_params: EnvironmentParams) {
+        constructor (env_params: I_EnvironmentParams) {
             this.name = env_params.name;
             this.imgUrl = env_params.imgUrl;
             this.imgX = env_params.imgX || "0px";
@@ -27,7 +28,7 @@ namespace S9 {
             this.width = env_params.width;
             this.x = env_params.x;
             this.y = env_params.y;
-            this.autoMove = env_params.autoMove || EnvironmentAutoMove.None;
+            this.autoMove = env_params.autoMove || E_EnvironmentAutoMove.None;
             this.animationDuration = env_params.animationDuration;
             this.animationDelay = env_params.animationDelay || "0s";
             this.htmlContainerID = env_params.htmlContainerID;
@@ -46,29 +47,29 @@ namespace S9 {
             let height: string;
             let width: string;
 
-            if (this.autoMove === EnvironmentAutoMove.None) {
+            if (this.autoMove === E_EnvironmentAutoMove.None) {
                 width = this.width + "px";
                 height = this.height + "px";
             }
-            else if (this.autoMove === EnvironmentAutoMove.Left) {
+            else if (this.autoMove === E_EnvironmentAutoMove.Left) {
                 anim_x_displacement = this.width + "px";
                 anim_y_displacement = "0px";
                 width = "100%";
                 height = this.height + "px";
             }
-            else if (this.autoMove === EnvironmentAutoMove.Right) {
+            else if (this.autoMove === E_EnvironmentAutoMove.Right) {
                 anim_x_displacement = "-" + this.width + "px";
                 anim_y_displacement = "0px";
                 width = "100%";
                 height = this.height + "px";
             }
-            else if (this.autoMove === EnvironmentAutoMove.Up) {
+            else if (this.autoMove === E_EnvironmentAutoMove.Up) {
                 anim_x_displacement = "0px";
                 anim_y_displacement = this.height + "px";
                 width = this.width + "px";
                 height = "100%";
             }
-            else if (this.autoMove === EnvironmentAutoMove.Down) {
+            else if (this.autoMove === E_EnvironmentAutoMove.Down) {
                 anim_x_displacement = "-" + this.width + "px";
                 anim_y_displacement = "-" + this.height + "px";
                 width = this.width + "px";
@@ -77,7 +78,7 @@ namespace S9 {
 
             let animationHtml: string = "";
 
-            if (this.autoMove !== EnvironmentAutoMove.None) {
+            if (this.autoMove !== E_EnvironmentAutoMove.None) {
                 animationHtml = `
                         -webkit-animation: ${animationName} ${this.animationDuration} linear ${this.animationDelay} infinite normal;
                         animation: ${animationName} ${this.animationDuration} linear ${this.animationDelay} infinite normal;
@@ -110,6 +111,11 @@ namespace S9 {
             `;
 
             $('#' + this.htmlContainerID).append(htmlObj);
+        }
+
+        jump () {
+            console.log(this.name + " is jumping...");
+            
         }
     }
 }

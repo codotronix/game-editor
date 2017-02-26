@@ -6,6 +6,7 @@ var S9;
         }
         GameWorld.init = function (htmlGameWordID) {
             GameWorld.id = htmlGameWordID;
+            GameWorld.gameStatus = S9.E_GameStatus.End;
             GameWorld.calculateWorldDimensions();
             GameWorld.addWorldResizeListener(GameWorld.calculateWorldDimensions);
             GameWorld.startWorldResizeListener();

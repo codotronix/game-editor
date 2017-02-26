@@ -1,5 +1,6 @@
+$('#'+g.get('Box').id).remove();
 // Initialize Game World
-S9.GameWorld.init("gameContainer");
+S9.GameWorld.init("gameEditor");
 // Create Cloud 1
 var cloud1_params = {
     name: "cloud_1",
@@ -8,11 +9,11 @@ var cloud1_params = {
     width: 509,
     x: 0,
     y: 0,
-    autoMove: S9.E_EnvironmentAutoMove.Right,
+    autoMove: S9.EnvironmentAutoMove.Right,
     animationDuration: "20s",
     htmlContainerID: S9.GameWorld.id
 };
-var cloud1 = new S9.GameObject(cloud1_params);
+var cloud1 = new S9.GameEnvironment(cloud1_params);
 // Create Cloud 2
 var cloud2_params = {
     name: "cloud_2",
@@ -21,11 +22,11 @@ var cloud2_params = {
     width: 1183,
     x: 0,
     y: 0,
-    autoMove: S9.E_EnvironmentAutoMove.Right,
+    autoMove: S9.EnvironmentAutoMove.Right,
     animationDuration: "80s",
     htmlContainerID: S9.GameWorld.id
 };
-var cloud2 = new S9.GameObject(cloud2_params);
+var cloud1 = new S9.GameEnvironment(cloud2_params);
 // Create The Road
 var road_params = {
     name: "road",
@@ -34,11 +35,11 @@ var road_params = {
     width: 238,
     x: 0,
     y: (S9.GameWorld.height - 50),
-    autoMove: S9.E_EnvironmentAutoMove.Right,
+    autoMove: S9.EnvironmentAutoMove.Right,
     animationDuration: "5s",
     htmlContainerID: S9.GameWorld.id
 };
-var road = new S9.GameObject(road_params);
+var road = new S9.GameEnvironment(road_params);
 // Let's create GameCharacter Goltu
 var goltu_params = {
     name: "goltu",
@@ -47,14 +48,8 @@ var goltu_params = {
     width: 60,
     x: 100,
     y: (road_params.y - 83 + road_params.height / 2 + 9),
-    autoMove: S9.E_EnvironmentAutoMove.None,
+    autoMove: S9.EnvironmentAutoMove.None,
     animationDuration: ".2s",
     htmlContainerID: S9.GameWorld.id
 };
-var goltu = new S9.GameObject(goltu_params);
-S9.Events.addKeyListener(S9.E_Key.A, {
-    callbackId: ("goltu_jump_" + Math.random().toString().replace(/[.]/g, "")),
-    fn: goltu.jump,
-    objectInstance: goltu
-});
-//# sourceMappingURL=index.js.map
+var goltu = new S9.GameEnvironment(goltu_params);

@@ -3,6 +3,7 @@ namespace S9 {
     export class GameWorld  {
         static id: string;
         static worldResizeListeners: Array<Function> = [];
+        static gameStatus: E_GameStatus;
         public static width: number;
         public static height: number;
 
@@ -10,6 +11,7 @@ namespace S9 {
 
         public static init (htmlGameWordID: string) {
             GameWorld.id = htmlGameWordID;
+            GameWorld.gameStatus = E_GameStatus.End;
             GameWorld.calculateWorldDimensions();
             GameWorld.addWorldResizeListener(GameWorld.calculateWorldDimensions);
 
@@ -35,5 +37,5 @@ namespace S9 {
             })
         }
 
-    }
+    }    
 }
